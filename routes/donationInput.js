@@ -7,10 +7,16 @@ const dayjs = require('dayjs')
 router.post("/", async function(req, res, next){
 
     const { user_id, group_name, money, date, nations} = req.body
+    let insertQuery = `INSERT INTO donation_record (user_id, group_name, money, date, nations, created_at) VALUES`;
 
     try {
-        const insertQuery = "INSERT INTO donation_record SET user_id = ?, group_name = ?, money = ?,  date = ?, nations = ?, created_at = NOW()";
-        await mysqlConnection.query(insertQuery,[user_id,group_name,money,date,nations])
+        let queryValues ;
+        for(let i = 0; i < nations.length; i++){
+            queryValues = `(${user_id}, '${group_name}', ${money}, '${date}', ${nations[i]}, NOW())${i == nations.length -1 ? ";" : "," }`
+            insertQuery += queryValues
+        }
+        
+        await mysqlConnection.query(insertQuery)
         res.json({message : 'Success'});
     } catch (error) {
         return next(error)
