@@ -12,6 +12,7 @@ var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var donationInputRouter = require('./routes/donationInput');
 var nationsRouter = require('./routes/nations');
+var worldmapRouter = require('./routes/worldmap');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/login',loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/donation_input',donationInputRouter);
 app.use('/nations',nationsRouter);
+app.use('/worldmap',worldmapRouter);
 
 
 // catch 404 and forward to error handler
