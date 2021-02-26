@@ -34,7 +34,7 @@ router.post('/',async (req, res, next) => {
         if(loginUser.length != 0){
             res.json({message : 'Success', token: token});
         }else{
-            res.json({ message : 'ユーザーが存在しません' });
+            res.json({ message : 'ユーザーが存在しません。' });
         }
     } catch(err){
         return next(err);
