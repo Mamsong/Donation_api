@@ -9,7 +9,7 @@ router.get("/:user_id", async function(req, res, next){
         const data = await mysqlConnection.query(selectQuery, [user_id]);
         res.json(data)
     } catch (error) {
-        res.next(error);
+        return next(error);
     }
 
 })
